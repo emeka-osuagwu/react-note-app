@@ -19,6 +19,9 @@ module.exports = Object.assign({}, configuration, {
       template: './public/index.html',
       title: 'Adeva Take Home',
     }),
+    new CopyWebpackPlugin([
+      { from:'src/assets/images', to:'images' },
+    ])
   ],
   devServer: {
     historyApiFallback: {
