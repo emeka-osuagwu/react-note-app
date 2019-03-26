@@ -1,14 +1,7 @@
 import React from "react"
 import {render} from "react-dom"
-
-const App = () => (<h1>fkvdjfvkdjfkdj</h1>)
+import App from './App';
 
 const rootElem = document.getElementById('root');
 
-render(
-	<App />,
-	rootElem
-)
-
-// const html = rootElem.innerHTML;
-// rootElem.innerHTML = 'Welcome to the Adeva take home test. Please follow the instructions in the README and have fun 😃.';
+render(<App />,rootElem)
