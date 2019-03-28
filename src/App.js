@@ -1,21 +1,20 @@
 import React from 'react';
 
+import NavBar from "./components/common/navbar"
+import SideNav from "./components/SideNav"
+import MainContent from "./components/MainContent"
+
+import './assets/styles/style.scss';
+
 const App = () => (
 	<div>
-		<nav className="navbar navbar-light bg-light">
-			<a className="navbar-brand" href="#">
-				<img className="d-inline-block align-top" src="images/logo.png" style={{width: 30, height: 30}} />
-				NoteApp
-			</a>
-		</nav>
-
-		<div class="container-fluid">
-		  <div class="row">
-		    <div class="col-2">side bar</div>
-		    <div class="col-8">main content</div>
-		  </div>
+		<NavBar />
+		<div className="container-fluid content_wrapper">
+			<div className="row">
+				<SideNav />
+				<MainContent />
+			</div>
 		</div>
-
 	</div>
 );
 
