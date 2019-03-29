@@ -5,25 +5,14 @@ export default class SideNav extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			notes: [
-				{
-					title: "how to build a docker app",
-					body: "fvkjdfvjdfhvjdfhvjdhfvjdhfjh"
-				},
-				{
-					title: "how to cook rice",
-					body: "fvkjdfvjdfhvjdfhvjdhfvjdhfjh"
-				},
-			],
 			items: []
 		}
 	}
 
 	componentWillMount(){
-		
 		var items = [];
 
-		var notes = this.state.notes.filter(function(note){	
+		var notes = this.props.notes.filter(function(note){	
 			items.push(note.title)
 		});
 
@@ -32,8 +21,7 @@ export default class SideNav extends React.Component {
 
 	filterList = (event) => {
 		
-		var notes = this.state.notes;
-
+		var notes = this.props.notes;
 		var items = [];
 		
 		notes = notes.filter(function(note){
@@ -44,8 +32,17 @@ export default class SideNav extends React.Component {
 			items.push(note.title)
 		});
 
-		this.setState({items: items})
-		
+		this.setState({items: items})		
+	}
+
+	renderButton(){
+		return(
+			<div className="list-group">
+				{this.state.items.map((item, key) =>
+					<button onClick={()=>this.props.showContent(item)} key={key} type="button" className="list-group-item list-group-item-action">{item}</button>
+				)}
+			</div>
+		)
 	}
 
 	render() {
@@ -57,14 +54,7 @@ export default class SideNav extends React.Component {
 							<input type="text" className="form-control" placeholder="Search" onChange={this.filterList} />
 						</div>
 					</form>
-
-					<div className="list-group">
-						{	
-							this.state.items.map(function(item, key) {
-								return <button key={key} type="button" className="list-group-item list-group-item-action">{item}</button>
-							})
-						}
-					</div>
+					{this.renderButton()}
 				</div>
 		    </div>
 		)
