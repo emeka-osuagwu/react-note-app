@@ -1,4 +1,10 @@
+
 .col-2.side_bar_wrapper {
     height: 100vh;
-    background: gray;
+    padding: 10px;
+    padding-top: 10px;
+}
+
+.main_content_wrapper {
+	padding: 20px 200px;
 }

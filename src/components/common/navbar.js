@@ -16,7 +16,7 @@ export default class SideNav extends React.Component {
 
 				<ul className="nav justify-content-end">
 				  <li className="nav-item">
-				    <a className="nav-link active" href="#" onClick={this.props.fireHandleShow}>Create</a>
+				    <a className="nav-link active btn btn-primary" href="#" onClick={this.props.fireHandleShow}>Create</a>
 				  </li>
 				</ul>
 			</nav>

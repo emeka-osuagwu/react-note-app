@@ -13,6 +13,11 @@ export default class SideNav extends React.Component {
 		this.generateFilterList(props.notes)
 	}
 
+	componentWillMount(){
+		var items = [];
+		this.generateFilterList(this.props.notes)
+	}
+
 	generateFilterList = (notes) => {
 
 		var items = [];
@@ -23,12 +28,6 @@ export default class SideNav extends React.Component {
 
 		// this.props.notes = items
 		this.setState({items: items})
-	}
-
-	componentWillMount(){
-		var items = [];
-
-		this.generateFilterList(this.props.notes)
 	}
 
 	filterList = (event) => {
