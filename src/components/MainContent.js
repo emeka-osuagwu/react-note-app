@@ -6,13 +6,38 @@ export default class MainContent extends React.Component {
 		super(props);
 	}
 
-	render() {
-		return (
+	renderAction(){
+		if (this.props.show_action) {
+			return (
+				<div>
+					<span style={{marginRight: 10}} onClick={this.props.editNote} className="badge badge-primary">Edit</span>
+					<span onClick={this.props.deleteNote} className="badge badge-danger">Delete</span>
+				</div>
+			)
+		}
+	}
+
+	renderInitState(){
+		return ( 
 			<div className="col-8 main_content_wrapper">
-				<span onClick={this.props.editNote} className="badge badge-primary">Edit</span>
-				<h1>{this.props.note.title}</h1>
-				<p className="text-justify">{this.props.note.body}</p>
+				<img className="d-inline-block align-top" src="images/bg.png" />
 			</div>
 		)
+	}
+
+	render() {
+
+		if (!this.props.show_action) {
+			return this.renderInitState()
+		}
+		else{
+			return (
+				<div className="col-8 main_content_wrapper">
+					{this.renderAction()}
+					<h1>{this.props.note.title}</h1>
+					<p className="text-justify">{this.props.note.body}</p>
+				</div>
+			)		
+		}
 	}
 }

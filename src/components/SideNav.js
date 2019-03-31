@@ -9,14 +9,26 @@ export default class SideNav extends React.Component {
 		}
 	}
 
-	componentWillMount(){
+	componentWillReceiveProps(props){
+		this.generateFilterList(props.notes)
+	}
+
+	generateFilterList = (notes) => {
+
 		var items = [];
 
-		var notes = this.props.notes.filter(function(note){	
+		var notes = notes.filter(function(note){	
 			items.push(note.title)
 		});
 
+		// this.props.notes = items
 		this.setState({items: items})
+	}
+
+	componentWillMount(){
+		var items = [];
+
+		this.generateFilterList(this.props.notes)
 	}
 
 	filterList = (event) => {
