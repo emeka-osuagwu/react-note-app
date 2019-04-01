@@ -1,12 +1,12 @@
 import React from 'react';
 
-import NavBar from "./components/common/navbar"
-import SideNav from "./components/SideNav"
-import MainContent from "./components/MainContent"
+import NavBar from "./common/navbar"
+import SideNav from "./SideNav"
+import MainContent from "./MainContent"
 import {Modal, Button} from "react-bootstrap"
 import {reactLocalStorage} from 'reactjs-localstorage';
 
-import './assets/styles/style.css';
+import '../assets/styles/style.css';
 
 export default class App extends React.Component {
 	
@@ -94,8 +94,7 @@ export default class App extends React.Component {
 		})
 	}
 
-	handleCreate = () => {
-		
+	handleCreate = () => {		
 		if (this.state.note_body == '' || this.state.note_body == undefined || this.state.note_title == '' || this.state.note_title == undefined) {
 			alert('all fields are required')
 		}
@@ -135,6 +134,10 @@ export default class App extends React.Component {
 
 	handleShow() {
 	  this.setState({ show_model: true });
+	}
+
+	handleChange(event) {
+		this.setState({[event.target.name]: event.target.value});
 	}
 
 	handleTitleChange(event) {
@@ -187,9 +190,9 @@ export default class App extends React.Component {
 						<Modal.Title>Create Note</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<input type="email" className="form-control" placeholder="Note title" value={this.state.note_title} onChange={this.handleTitleChange.bind(this)} />
+					<input type="email" name="note_title" className="form-control" placeholder="Note title" value={this.state.note_title} onChange={this.handleChange.bind(this)} />
 					<br />
-					<textarea className="form-control" value={this.state.note_body} rows="5" placeholder="Note" onChange={this.handleBodyChange.bind(this)}></textarea>
+					<textarea name="note_body" className="form-control" value={this.state.note_body} rows="5" placeholder="Note" onChange={this.handleChange.bind(this)}></textarea>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button variant="secondary" onClick={this.handleClose.bind(this)}>
