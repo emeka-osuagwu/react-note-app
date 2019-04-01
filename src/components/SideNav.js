@@ -58,7 +58,7 @@ export default class SideNav extends React.Component {
 
 	render() {
 		return (
-		    <div className="col-2 side_bar_wrapper bg-light">
+		    <div className="col-2 side_bar_wrapper bg-light" style={{height: `100vh`, padding: 10, paddingTop: 10}}>
 				<div>
 					<form>
 						<div className="form-group">
