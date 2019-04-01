@@ -128,12 +128,8 @@ export default class App extends React.Component {
 		})
 	}
 
-	handleClose() {
-	  this.setState({ show_model: false });
-	}
-
 	handleShow() {
-	  this.setState({ show_model: true });
+	  this.setState({ show_model: !this.state.show_model });
 	}
 
 	handleChange(event) {
@@ -187,7 +183,7 @@ export default class App extends React.Component {
 					<textarea name="note_body" className="form-control" value={this.state.note_body} rows="5" placeholder="Note" onChange={this.handleChange.bind(this)}></textarea>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="secondary" onClick={this.handleClose.bind(this)}>
+					<Button variant="secondary" onClick={this.handleShow.bind(this)}>
 						Close
 					</Button>
 					<Button variant="primary" onClick={this.handleCreate.bind(this)}>
