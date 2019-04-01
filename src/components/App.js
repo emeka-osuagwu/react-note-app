@@ -140,14 +140,6 @@ export default class App extends React.Component {
 		this.setState({[event.target.name]: event.target.value});
 	}
 
-	handleTitleChange(event) {
-		this.setState({note_title: event.target.value});
-	}
-
-	handleBodyChange(event) {
-		this.setState({note_body: event.target.value});
-	}
-
 	handleEditNote(){
 		this.setState({
 			show_edit_model: true,
@@ -167,9 +159,9 @@ export default class App extends React.Component {
 					<Modal.Title>Update Note</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<input type="text" className="form-control" placeholder="Note title" value={this.state.note_title} onChange={this.handleTitleChange.bind(this)} />
+					<input type="text" name="note_title" className="form-control" placeholder="Note title" value={this.state.note_title} onChange={this.handleChange.bind(this)} />
 					<br />
-					<textarea className="form-control" value={this.state.note_body} placeholder="Note" onChange={this.handleBodyChange.bind(this)}></textarea>
+					<textarea name="note_body" className="form-control" value={this.state.note_body} placeholder="Note" onChange={this.handleChange.bind(this)}></textarea>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button variant="secondary" onClick={this.handleCloseEditModel.bind(this)}>
