@@ -19,7 +19,7 @@ export default class MainContent extends React.Component {
 
 	renderInitState(){
 		return ( 
-			<div className="col-8 main_content_wrapper">
+			<div className="col-8 main_content_wrapper" style={{padding: `20px 200px`}}>
 				<img className="d-inline-block align-top" src="images/bg.png" />
 			</div>
 		)
@@ -32,7 +32,7 @@ export default class MainContent extends React.Component {
 		}
 		else{
 			return (
-				<div className="col-8 main_content_wrapper">
+				<div className="col-8 main_content_wrapper" style={{padding: `20px 200px`}}>
 					{this.renderAction()}
 					<h1>{this.props.note.title}</h1>
 					<p className="text-justify">{this.props.note.body}</p>
