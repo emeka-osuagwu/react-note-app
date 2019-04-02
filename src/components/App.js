@@ -94,7 +94,8 @@ export default class App extends React.Component {
 		})
 	}
 
-	handleCreate = () => {		
+	handleCreate = () => {
+		
 		if (this.state.note_body == '' || this.state.note_body == undefined || this.state.note_title == '' || this.state.note_title == undefined) {
 			alert('all fields are required')
 		}
@@ -128,12 +129,20 @@ export default class App extends React.Component {
 		})
 	}
 
-	handleShow() {
-	  this.setState({ show_model: !this.state.show_model });
+	handleClose() {
+	  this.setState({ show_model: false });
 	}
 
-	handleChange(event) {
-		this.setState({[event.target.name]: event.target.value});
+	handleShow() {
+	  this.setState({ show_model: true });
+	}
+
+	handleTitleChange(event) {
+		this.setState({note_title: event.target.value});
+	}
+
+	handleBodyChange(event) {
+		this.setState({note_body: event.target.value});
 	}
 
 	handleEditNote(){
@@ -155,9 +164,9 @@ export default class App extends React.Component {
 					<Modal.Title>Update Note</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<input type="text" name="note_title" className="form-control" placeholder="Note title" value={this.state.note_title} onChange={this.handleChange.bind(this)} />
+					<input type="text" className="form-control title_body_input" placeholder="Note title" value={this.state.note_title} onChange={this.handleTitleChange.bind(this)} />
 					<br />
-					<textarea name="note_body" className="form-control" value={this.state.note_body} placeholder="Note" onChange={this.handleChange.bind(this)}></textarea>
+					<textarea className="form-control" value={this.state.note_body} placeholder="Note" onChange={this.handleBodyChange.bind(this)}></textarea>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button variant="secondary" onClick={this.handleCloseEditModel.bind(this)}>
@@ -178,12 +187,12 @@ export default class App extends React.Component {
 						<Modal.Title>Create Note</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<input type="email" name="note_title" className="form-control" placeholder="Note title" value={this.state.note_title} onChange={this.handleChange.bind(this)} />
+					<input type="email" className="form-control note_title_input" placeholder="Note title" value={this.state.note_title} onChange={this.handleTitleChange.bind(this)} />
 					<br />
-					<textarea name="note_body" className="form-control" value={this.state.note_body} rows="5" placeholder="Note" onChange={this.handleChange.bind(this)}></textarea>
+					<textarea className="form-control note_body_input" value={this.state.note_body} rows="5" placeholder="Note" onChange={this.handleBodyChange.bind(this)}></textarea>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="secondary" onClick={this.handleShow.bind(this)}>
+					<Button variant="secondary" onClick={this.handleClose.bind(this)}>
 						Close
 					</Button>
 					<Button variant="primary" onClick={this.handleCreate.bind(this)}>

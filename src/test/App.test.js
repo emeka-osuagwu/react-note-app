@@ -31,3 +31,35 @@ describe('App Component Test Suite', () => {
 	});
 
 });
+
+describe('Create Note Test Suite', () => {
+
+	it('should have a input field user type in', () => {
+
+		wrapper.setState({ show_model: true });
+
+		wrapper.find('.note_title_input').simulate('change', {
+			target: {value: 'note title'}
+		});
+
+		wrapper.update();
+
+		expect(wrapper.find('.note_title_input').prop('value')).toEqual('note title')
+
+	});
+
+	it('should have a textarea user type in', () => {
+
+		wrapper.setState({ show_model: true });
+
+		wrapper.find('.note_body_input').simulate('change', {
+			target: {value: 'note title'}
+		});
+
+		wrapper.update();
+
+		expect(wrapper.find('.note_body_input').prop('value')).toEqual('note title')
+
+	});
+
+});
