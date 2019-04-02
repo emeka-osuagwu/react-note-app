@@ -10,7 +10,7 @@ export default function NavBar(props){
 
 			<ul className="nav justify-content-end">
 			  <li className="nav-item">
-			    <a className="nav-link active btn btn-primary" href="#" onClick={props.fireHandleShow}>Create</a>
+			    <button className="nav-link active btn btn-primary" href="#" onClick={props.fireHandleShow}>Create</button>
 			  </li>
 			</ul>
 		</nav>

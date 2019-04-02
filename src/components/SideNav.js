@@ -21,7 +21,7 @@ export default class SideNav extends React.Component {
 	generateFilterList = (notes) => {
 
 		var items = [];
-
+		
 		var notes = notes.filter(function(note){	
 			items.push(note.title)
 		});
@@ -62,7 +62,7 @@ export default class SideNav extends React.Component {
 				<div>
 					<form>
 						<div className="form-group">
-							<input type="text" className="form-control" placeholder="Search" onChange={this.filterList} />
+							<input type="text" className="form-control search_input" placeholder="Search" onChange={this.filterList.bind(this)} />
 						</div>
 					</form>
 					{this.renderButton()}
