@@ -1,17 +1,59 @@
 import React from 'react';
-
-export default class MainContent extends React.Component {
+import {Modal, Button} from "react-bootstrap"
+import { connect } from 'react-redux'
+import * as actions from '../actions' 
+ 
+class MainContent extends React.Component {
 
 	constructor(props) {
 		super(props);
+		this.state = {
+			title: "",
+			body: "",
+			show_edit_model: false,
+		}
+	}
+
+	handleChange = (event) => {
+		this.setState({[event.target.name]: event.target.value})
+	}
+
+	componentDidMount(){
+		this.props.fetchNotes()
+	}
+
+	handleOpenEditModel = () => {
+		this.setState({
+			show_edit_model: !this.state.show_edit_model,
+			title: this.props.note.title,
+			body: this.props.note.body
+		})
+	}
+
+	deleteNote = (title) => {
+		this.props.deleteNote(title)
+	}
+
+	updateNote = () => {
+		this.props.updateNote(this.props.note.title, {title: this.state.title, body: this.state.body})
+	}
+
+	renderInitState(){
+		if (!this.props.active_content) {
+			return ( 
+				<div className="col-8 main_content_wrapper" style={{padding: `20px 200px`}}>
+					<img className="d-inline-block align-top" src="images/bg.png" />
+				</div>
+			)
+		}
 	}
 
 	renderAction(){
-		if (this.props.show_action) {
+		if (this.props.active_content) {
 			return (
 				<div>
-					<span style={{marginRight: 10}} onClick={this.props.editNote} className="badge badge-primary">Edit</span>
-					<span onClick={this.props.deleteNote} className="badge badge-danger">Delete</span>
+					<span style={{marginRight: 10}} onClick={this.handleOpenEditModel} className="badge badge-primary">Edit</span>
+					<span onClick={() => this.deleteNote(this.props.note.title)} className="badge badge-danger">Delete</span>
 				</div>
 			)
 		}
@@ -24,15 +66,15 @@ export default class MainContent extends React.Component {
 					<Modal.Title>Update Note</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<input type="text" className="form-control" placeholder="Note title" value={this.state.note_title} onChange={this.handleTitleChange.bind(this)} />
+					<input type="text" name="title" className="form-control title_body_input" placeholder="Note title" value={this.state.title} onChange={this.handleChange} />
 					<br />
-					<textarea className="form-control" value={this.state.note_body} placeholder="Note" onChange={this.handleBodyChange.bind(this)}></textarea>
+					<textarea name="body" className="form-control" value={this.state.body} placeholder="Note" onChange={this.handleChange}></textarea>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="secondary" onClick={this.handleCloseEditModel.bind(this)}>
+					<Button variant="secondary" onClick={this.handleOpenEditModel}>
 						Close
 					</Button>
-					<Button variant="primary" onClick={this.updateNote.bind(this)}>
+					<Button variant="primary" onClick={this.updateNote}>
 						Update
 					</Button>
 				</Modal.Footer>
@@ -40,50 +82,29 @@ export default class MainContent extends React.Component {
 		)
 	}
 
-	renderCreateModel(){
-		return (
-			<Modal show={this.state.show_model}>
-				<Modal.Header>
-						<Modal.Title>Create Note</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<input type="email" className="form-control" placeholder="Note title" value={this.state.note_title} onChange={this.handleTitleChange.bind(this)} />
-					<br />
-					<textarea className="form-control" value={this.state.note_body} rows="5" placeholder="Note" onChange={this.handleBodyChange.bind(this)}></textarea>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button variant="secondary" onClick={this.handleClose.bind(this)}>
-						Close
-					</Button>
-					<Button variant="primary" onClick={this.handleCreate.bind(this)}>
-						Save
-					</Button>
-				</Modal.Footer>
-			</Modal>
-		)
-	}
-
-	renderInitState(){
-		return ( 
-			<div className="col-8 main_content_wrapper" style={{padding: `20px 200px`}}>
-				<img className="d-inline-block align-top" src="images/bg.png" />
-			</div>
-		)
-	}
-
 	render() {
 
-		if (!this.props.show_action) {
-			return this.renderInitState()
-		}
-		else{
-			return (
-				<div className="col-8 main_content_wrapper" style={{padding: `20px 200px`}}>
-					{this.renderAction()}
-					<h1>{this.props.note.title}</h1>
-					<p className="text-justify">{this.props.note.body}</p>
-				</div>
-			)		
-		}
+		return (
+			<div className="col-8 main_content_wrapper" style={{padding: `20px 200px`}}>
+				{this.renderInitState()}
+				{this.renderEditModel()}
+				{this.renderAction()}
+				<h1>{this.props.note.title}</h1>
+				<p className="text-justify">{this.props.note.body}</p>
+			</div>
+		)		
 	}
 }
+
+function mapStateToProps(state) {
+
+	const note = state.notes.note;
+	const active_content = state.notes.active_content;
+
+	return Object.assign({}, state, {
+		note,
+		active_content
+	})
+}
+
+export default connect(mapStateToProps, actions)(MainContent);

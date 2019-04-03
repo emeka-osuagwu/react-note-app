@@ -1,29 +1,25 @@
-// import React from 'react';
-// import { shallow } from "enzyme";
+import React from 'react';
+import { mount } from "enzyme";
 
-// // Components
-// import NavBar from '../components/common/navbar.js';
+import NavBar from '../components/common/navbar.js';
 
-// function setup() {
-	
-// 	const props = {
-// 		imgPath: 'some/image/path/to/a/mock/image',
-// 	};
+let wrapper;
 
-// 	const wrapper = shallow(<NavBar />);
-// 	return { wrapper, props };
-// }
+beforeEach(() => {
+	wrapper = mount(<NavBar />);
+})
 
-// describe('WelcomeMessage Test Suite', () => {
+afterEach(() => {
+	wrapper.unmount();
+})
 
-// 	it('Should have an image', () => {
-// 		const { wrapper } = setup();
-// 		expect(wrapper.find('img').exists()).toBe(true);
-// 	});
+describe('Navbar Component Test Suite', () => {
 
-// 	it('Should have a create button', () => {
-// 		const { wrapper } = setup();
-// 		expect(wrapper.find('a').exists()).toBe(true);
-// 	});
+	it('should show app logo', () => {
+		expect(wrapper.find('img').length).toEqual(1);
+	});
 
-// });
+	it('should show create button', () => {
+		expect(wrapper.find('button').length).toEqual(1);
+	});
+});
