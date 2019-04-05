@@ -16,7 +16,6 @@ beforeEach(() => {
 	notes = reactLocalStorage.getObject('notes');
 })
 
-
 it('has the right action', () => {
 	const action = saveNote({});
 	expect(action.type).toEqual(SAVE_NOTE)
