@@ -1,9 +1,7 @@
 import React from 'react';
-
 import NavBar from "./common/navbar"
 import SideNav from "./SideNav"
 import MainContent from "./MainContent"
-import {Modal, Button} from "react-bootstrap"
 import {reactLocalStorage} from 'reactjs-localstorage';
 
 import '../assets/styles/style.css';
@@ -12,12 +10,6 @@ export default class App extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			notes: [],
-			note: {},
-			show_model: false,
-			show_action: true
-		}
 	}
 
 	componentWillMount(){
@@ -29,7 +21,6 @@ export default class App extends React.Component {
 		if(this.isEmpty(reactLocalStorage.getObject('notes'))) {
 			reactLocalStorage.setObject('notes', test_data);
 		}
-
 	}
 
 	isEmpty(obj) {

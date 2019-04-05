@@ -19,11 +19,6 @@ class SideNav extends React.Component {
 		this.generateFilterList(props.notes)
 	}
 
-	componentDidMount(){
-		var items = [];
-		this.generateFilterList(this.props.notes)
-	}
-
 	handleOpenCreateModel = () => {
 		this.setState({show_create_model: !this.state.show_create_model})
 	}

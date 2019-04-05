@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from "enzyme";
 
-import NavBar from '../components/common/navbar.js';
+import NavBar from '../components/common/navbar';
 
 let wrapper;
 
@@ -19,7 +19,7 @@ describe('Navbar Component Test Suite', () => {
 		expect(wrapper.find('img').length).toEqual(1);
 	});
 
-	it('should show create button', () => {
-		expect(wrapper.find('button').length).toEqual(1);
+	it('should show app title', () => {
+		expect(wrapper.render().text()).toContain('NoteApp');
 	});
 });
