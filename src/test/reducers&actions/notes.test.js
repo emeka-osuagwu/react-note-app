@@ -10,7 +10,7 @@ it('handles action of type SAVE_NOTE', () => {
 
 	const newState = noteReducer([], action);
 
-	expect(newState).toEqual(['New Comment'])
+	expect(newState).toEqual({notes: 'New Comment'})
 })
 
 it('handles action of with unknown type', () => {
