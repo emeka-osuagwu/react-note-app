@@ -4,8 +4,6 @@ import SideNav from "./SideNav"
 import MainContent from "./MainContent"
 import {reactLocalStorage} from 'reactjs-localstorage';
 
-import '../assets/styles/style.css';
-
 export default class App extends React.Component {
 
 	constructor(props) {

@@ -21,58 +21,6 @@ module.exports = {
         use: ['babel-loader'],
         exclude: /node_modules/,
       },
-      {
-        test: /\.scss$/,
-        use: [{loader: "style-loader"},
-        {loader: "css-loader"},
-        {loader: "sass-loader"}]
-      },
-      {
-        test: /\.s?css$/,
-        exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true,
-                modules: true,
-                importLoaders: true,
-                localIdentName: '[name]__[local]--[hash:base64:5].css',
-                sourcemaps: true,
-              },
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                sourcemaps: true,
-              },
-            },
-          ],
-        }),
-      },
-      {
-        test: /\.s?css$/,
-        include: /node_modules/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true,
-              },
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                sourcemaps: true,
-              },
-            },
-          ],
-        }),
-      },
     ],
   },
   resolve: {
